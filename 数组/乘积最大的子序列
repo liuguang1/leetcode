@@ -1,0 +1,16 @@
+# 前 n 位的乘积最大子序列分以下3种情况：
+
+# 1. 前n - 1位的乘积最小子序列的乘积 * A[n]最大
+
+# 2. 前n - 1位的乘积最大子序列的乘积 * A[n]最大
+
+# 3. 前n - 1位的乘积最大子序列和乘积最小子序列的乘积 * A[n]都不是最大，而A[n]本身最大。
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        res=nums[0]
+        min_,max_=nums[0],nums[0]
+        for item in nums[1:]:
+            min_,max_=min(item,min_*item,max_*item),max(item,min_*item,max_*item)
+            res=max(res,max_)
+        return res
+    
